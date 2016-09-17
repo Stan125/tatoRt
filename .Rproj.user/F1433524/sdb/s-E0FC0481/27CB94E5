@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### --- Analyze the data --- ####\n\n# Remove everything\nrm(list = ls())\n\n# Libraries\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Load data\nload(\"01_data generator/wiki_table.RData\")\n\n# Boxplot: IMDB Ratings broken-down in countries\nggplot(wiki_table, aes(x = factor(Land), y = rating)) +\n  geom_boxplot() +\n  ggtitle(\"Average IMDB Ratings of Tatort episodes per country\")\n\n# Ratings over time in countries\nggplot(wiki_table, aes(x = Erstausstrahlung, y = rating, col = Land)) +\n  geom_point(alpha = 0.3) +\n  geom_smooth() +\n  ggtitle(\"Average IMDB Ratings of Tatort episodes per country\")\n\n# Best 10 episodes\nwiki_table %>%\n  top_n(10, rating) %>%\n  arrange(desc(rating)) %>%\n  select(ep_name, rating)\n\n# Average rating per producer\nwiki_table %>%\n  group_by(Sender) %>%\n  summarise(mean = mean(rating, na.rm = TRUE)) %>%\n  arrange(desc(mean))\n\n# Best kommisars\nwiki_table %>%\n  group_by(Ermittler) %>%\n  summarise(mean = mean(rating, na.rm = TRUE),\n            count = n()) %>%\n  arrange(desc(mean)) %>%\n  filter(count > 10)\n",
+    "created" : 1474120628977.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "287488618",
+    "id" : "27CB94E5",
+    "lastKnownWriteTime" : 1474120776,
+    "last_content_update" : 1474120776116,
+    "path" : "~/GitHub/tatoRt/02_blog post/analysis.R",
+    "project_path" : "02_blog post/analysis.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
