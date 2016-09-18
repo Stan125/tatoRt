@@ -18,8 +18,9 @@ ggplot(wiki_table, aes(x = factor(Land), y = rating)) +
 # Ratings over time in countries
 ggplot(wiki_table, aes(x = Erstausstrahlung, y = rating, col = Land)) +
   geom_point(alpha = 0.3) +
-  geom_smooth() +
-  ggtitle("Average IMDB Ratings of Tatort episodes per country")
+  geom_smooth(se = FALSE) +
+  ggtitle("Average IMDB Ratings of Tatort episodes per country") +
+  labs(x = "Date of first broadcast", y = "IMDB Ratings")
 
 # Best 10 episodes
 wiki_table %>%

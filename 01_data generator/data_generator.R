@@ -8,7 +8,6 @@ library(XML)
 library(dplyr)
 library(ggplot2)
 library(rvest)
-library(lubridate)
 
 ### IMDB Table ###
 
